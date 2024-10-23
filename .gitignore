@@ -1,0 +1,10 @@
+# Comentario
+# *Comodin
+# / ruta
+#No añado la dll no es nescesaria
+/Hello Word/bin
+/Hello Word/obj
+
+#Nueva Ruta no agregar las siguentes rutas de Condiconales a Git
+/Condicionales/obj
+/Condicionales/bin
