@@ -1,4 +1,6 @@
-﻿class Program
+﻿using System.Diagnostics.Contracts;
+
+class Program
 {
     public static void Main(string[] args)
     {
@@ -23,13 +25,23 @@
         
         Console.WriteLine(Triangule(lado1,lado2,lado3));
 
-        Console.WriteLine("Introduce un numero entero para calacular su valor absoluto");
+        Console.WriteLine("Introduce un numero entero para calcular su valor absoluto");
         
         int number = int.Parse(Console.ReadLine()!);
         
         number=ValorAbsoluto(number);
         
         Console.WriteLine("Valor absoluto: "+ number);
+        
+        Console.WriteLine("Introduce 3 numeros enteros relacionados con dia, mes, año ");
+
+        int day = int.Parse(Console.ReadLine()!);
+
+        int month = int.Parse(Console.ReadLine()!);
+
+        int year = int.Parse(Console.ReadLine()!);
+
+        FormandoFechas(day,month,year);
     }
     public static void Divisible(int number1, int number2)
     {
@@ -83,5 +95,28 @@
       if(number < 0) return number*-1;
 
       return number;
+    }
+    public static void FormandoFechas(int day, int month, int year) 
+    {
+      if(month==4 || month == 6 || month == 9 || month == 11)
+      {
+        if(day<=30 && day>0) Console.WriteLine($"{day}/{month}/{year}");
+        
+        else Console.WriteLine("Fecha no valida"); 
+      }
+
+      else if(month==2)
+      {
+        int max= (year%4==0 || (year%100==0 && year%400==0)? 29:28);
+        if(day<=max && day > 0) Console.WriteLine($"{day}/{month}/{year}");
+
+        else Console.WriteLine("Fecha no valida");
+      }
+      else
+      { 
+        if(day<=31 && day > 0) Console.WriteLine($"{day}/{month}/{year}");
+        
+        else Console.WriteLine("Fecha no valida");
+      }
     }
 }
