@@ -14,6 +14,22 @@
         long idNumber = long.Parse(Console.ReadLine()!);
         
         personSexByIdNumber(idNumber);
+
+        Console.WriteLine("Introduce tres numeros enteros, para determinar si forman un triangulo");
+
+        int lado1 = int.Parse(Console.ReadLine()!);
+        int lado2 = int.Parse(Console.ReadLine()!);
+        int lado3 = int.Parse(Console.ReadLine()!); 
+        
+        Console.WriteLine(Triangule(lado1,lado2,lado3));
+
+        Console.WriteLine("Introduce un numero entero para calacular su valor absoluto");
+        
+        int number = int.Parse(Console.ReadLine()!);
+        
+        number=ValorAbsoluto(number);
+        
+        Console.WriteLine("Valor absoluto: "+ number);
     }
     public static void Divisible(int number1, int number2)
     {
@@ -30,5 +46,42 @@
         Console.WriteLine("Felicidades es una persona de sexo Masculino 🥳🥳.");
       }
       else Console.WriteLine("es una persona del sexo Femenino");
+    }
+    enum TypeOfTriangule
+    {
+      NotATriangule,
+      Escalene,
+      Isosceles,
+      Equilateral, 
+    }
+    public static int Triangule(int lado1, int lado2, int lado3)
+    {
+      if(lado1 + lado2 <= lado3 || lado1 + lado3 <= lado2 || lado2 + lado3 <= lado1)
+      {
+        Console.WriteLine("No es un triangulo");
+
+        return (int) TypeOfTriangule.NotATriangule;
+      }
+      else if (lado2 == lado1 && lado3 == lado2)
+      {
+        Console.WriteLine("Es un triangulo equilatero");
+
+        return (int) TypeOfTriangule.Equilateral;
+      }
+      else if( (lado1 != lado2 && lado3 != lado2) && lado3 != lado2)
+      {
+        Console.WriteLine("Es un triangulo escaleno");
+         
+        return (int) TypeOfTriangule.Escalene;
+      }
+      Console.WriteLine("Es un triangulo Isosceles");
+      
+      return (int) TypeOfTriangule.Isosceles;
+    }
+    public static int ValorAbsoluto(int number)
+    {
+      if(number < 0) return number*-1;
+
+      return number;
     }
 }
