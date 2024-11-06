@@ -8,3 +8,6 @@
 #Nueva Ruta no agregar las siguentes rutas de Condiconales a Git
 /Condicionales/obj
 /Condicionales/bin
+
+/Ciclos/obj
+/Ciclos/bin
