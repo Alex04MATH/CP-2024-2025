@@ -1,38 +1,39 @@
 ﻿using System.Diagnostics.Contracts;
+using System.Reflection.Metadata.Ecma335;
 
 class Program
 {
     public static void Main(string[] args)
     {
         Console.WriteLine("Introduce dos numeros enteros para determinar si es divisible el primero entre el segundo");
-        
+
         int number1 = int.Parse(Console.ReadLine()!);
         int number2 = int.Parse(Console.ReadLine()!);
 
         Divisible(number1,number2);
-        
+
         Console.WriteLine("Introduce un numero de identificacion para determinar el sexo de la persona");
 
         long idNumber = long.Parse(Console.ReadLine()!);
-        
+
         personSexByIdNumber(idNumber);
 
         Console.WriteLine("Introduce tres numeros enteros, para determinar si forman un triangulo");
 
         int lado1 = int.Parse(Console.ReadLine()!);
         int lado2 = int.Parse(Console.ReadLine()!);
-        int lado3 = int.Parse(Console.ReadLine()!); 
-        
-        Console.WriteLine(Triangule(lado1,lado2,lado3));
+        int lado3 = int.Parse(Console.ReadLine()!);
+
+        Console.WriteLine(Triangule(lado1, lado2, lado3));
 
         Console.WriteLine("Introduce un numero entero para calcular su valor absoluto");
-        
+
         int number = int.Parse(Console.ReadLine()!);
-        
+
         number=ValorAbsoluto(number);
-        
+
         Console.WriteLine("Valor absoluto: "+ number);
-        
+
         Console.WriteLine("Introduce 3 numeros enteros relacionados con dia, mes, año ");
 
         int day = int.Parse(Console.ReadLine()!);
@@ -42,6 +43,8 @@ class Program
         int year = int.Parse(Console.ReadLine()!);
 
         FormandoFechas(day,month,year);
+        Console.WriteLine(Factorial(5));
+        Console.WriteLine(ImprimiendoNumeros(6));
     }
     public static void Divisible(int number1, int number2)
     {
@@ -118,5 +121,17 @@ class Program
         
         else Console.WriteLine("Fecha no valida");
       }
+    }
+    public static int Factorial(int n)
+    {
+      if (n < 0) return 0;
+      if(n==1 || n==0) return 1;
+
+      return n * Factorial(n-1);
+    }
+    
+    public static int ImprimiendoNumeros(int n)
+    {
+      
     }
 }

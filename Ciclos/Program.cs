@@ -37,11 +37,15 @@
         {
             if(arr[i]>=mayor) mayor = arr[i];
             if(arr[i]<=menor) menor = arr[i];
-
+           
             if(i>0) promedio+=arr[i];
         }
         promedio = promedio/arr.Length;
         
         Console.WriteLine($"El menor elemento: {menor}, el mayor elemento:{mayor}, el promedio {promedio} .");
+    }
+    public static void RecorriendoArray(int[]arr)
+    {
+         
     }
 }
