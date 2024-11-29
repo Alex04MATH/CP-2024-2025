@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Numerics;
 
 class Program
 {
@@ -11,8 +12,8 @@ class Program
         //     Console.WriteLine(uno[i]);
         // }
         // Console.WriteLine(CualNumber(4,[4, 2, 4, 5, 6, 2, 7]));
-        System.Console.WriteLine(SistemaDeNumeracion(['a','b','c'],"cbaa"));
-        System.Console.WriteLine(SistemaDeNumeracionInvertido(['a','b','c'],63));
+        System.Console.WriteLine(SistemaDeNumeracion(['a','b'],"a"));
+        System.Console.WriteLine(SistemaDeNumeracionInvertido(['a','b'],0));
     }
 
     static int[] BubbleSort(int[] nums)
@@ -76,8 +77,11 @@ class Program
             int residuo=0;
             residuo=a%basenum;
             a=a/basenum;
-            posiciones.Add(residuo);if(a<basenum) posiciones.Add(a);
+            posiciones.Add(residuo);
+           
         }
+        if(a<basenum) posiciones.Add(a);
+        
         for(int i = posiciones.Count-1; i>=0;i--)
         {
             for(int j =0;j<num.Length;j++)
@@ -87,4 +91,4 @@ class Program
         }
         return b;
     }
-    }
+}
