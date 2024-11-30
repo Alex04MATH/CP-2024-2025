@@ -1,4 +1,4 @@
-﻿class Program
+﻿partial class Program
 {
     static void Main(string[] args)
     {
@@ -24,4 +24,18 @@
         }
        return matrix3;
     }
+    // static bool TableroAlcanzableCaballo(bool[,]matrix)
+    // {
+    //   bool[,] mascara;
+    //   (int,int)[] direccion={(1,2),(1,-2),(-1,2),(-1,-2),(2,1),(2,-1),(-2,1),(-2,-1)};
+    // }
+    
+    static int[] Espiral(int[,] matrix1)
+    {
+        bool[,] mascara=new bool[matrix1.GetLength(0),matrix1.GetLength(1)];
+        (int,int)[] direccion ={(1,0),(-1,0),(0,1),(0,-1)};
+        int[] espiral=new int[matrix1.GetLength(0)*matrix1.GetLength(1)];
+               
+    }
+    
 }

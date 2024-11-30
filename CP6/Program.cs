@@ -12,10 +12,12 @@ class Program
         //     Console.WriteLine(uno[i]);
         // }
         // Console.WriteLine(CualNumber(4,[4, 2, 4, 5, 6, 2, 7]));
-        System.Console.WriteLine(SistemaDeNumeracion(['a','b'],"a"));
-        System.Console.WriteLine(SistemaDeNumeracionInvertido(['a','b'],0));
+        int []a = BubbleSort([23,45,9238,1,3,30,29,0,-1]);
+        Console.WriteLine(SistemaDeNumeracion(['a','b'],"a"));
+        Console.WriteLine(SistemaDeNumeracionInvertido(['a','b'],0));
+        Console.WriteLine(BinarySearch(a,30));
     }
-
+#region Ordenacion y Busqueda
     static int[] BubbleSort(int[] nums)
     {
         for(int i = 0; i< nums.Length-1; i++ )
@@ -34,6 +36,19 @@ class Program
           nums=i;
           i=temp;
     }
+    static bool BinarySearch(int[] nums, int posicion)
+    {
+        for(int l=0,r=nums.Length-1;l<=r;)
+        {
+            int medium=(l+r)/2;
+            if(nums[medium]<posicion) l=medium+1;
+            else if(nums[medium]>posicion) r=medium-1;
+            else return true;
+        }
+
+        return false;
+    }
+#endregion
     static int CualNumber(int k, int [] arr)
     {
         int contador=0;
