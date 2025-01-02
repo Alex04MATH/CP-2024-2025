@@ -8,11 +8,11 @@
         Console.WriteLine(Solution.MaximoComunDivisor(125, 25));
         Console.WriteLine(Solution.Pow(3, 0));
         Console.WriteLine(Solution.PowMiddle(3, 0));
-        System.Console.WriteLine(Solution.BinarySearch([1,2,3,4,5,6,80],-1));
+        System.Console.WriteLine(Solution.BinarySearch([1, 2, 3, 4, 5, 6, 80], -1));
     }
-}    
-    partial class Solution
-    { 
+}
+partial class Solution
+{
     public static int Factorial(int x)
     {
         return x == 0 || x == 1 ? 1 : Factorial(x - 1) * x;
