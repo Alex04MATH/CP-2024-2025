@@ -5,17 +5,21 @@ class Program
 {
     public static void Main(string[] args)
     {
-      Console.WriteLine(Factorial(5));
-      ImprimiendoNumeros(6);
-      ImprimiendoNumerosInvertido(6);
+      Console.WriteLine(Solution.Factorial(5));
+      Solution.ImprimiendoNumeros(6);
+      Solution.ImprimiendoNumerosInvertido(6);
+      Solution.Avion(1,58,4,20);
     }
+}  
+static class Solution 
+{
     public static void Divisible(int number1, int number2)
     {
-        if(number1%number2==0)
-        {
-            Console.WriteLine($"Es divisible {number1}/{number2}");
-        }
-        else Console.WriteLine("no son divisibles");
+      if(number1%number2==0)
+      {
+        Console.WriteLine($"Es divisible {number1}/{number2}");
+      }
+      else Console.WriteLine("no son divisibles");
     }
     public static void personSexByIdNumber(long idNumber)
     {
@@ -32,6 +36,8 @@ class Program
       Isosceles,
       Equilateral, 
     }
+    
+    
     public static int Triangule(int lado1, int lado2, int lado3)
     {
       if(lado1 + lado2 <= lado3 || lado1 + lado3 <= lado2 || lado2 + lado3 <= lado1)
@@ -117,5 +123,18 @@ class Program
       }
       Console.WriteLine(i);
       imprimiendoNumerosInvertido(n,i+1); 
+    }
+    public static void Avion(int horaS,int minutoS,int horallegada,int minutollegada)
+    {
+      if((horaS > 24 || horallegada> 24) || (minutoS>60 || minutollegada>60) ) Console.WriteLine("Hora y minutos no validos");
+      int minDif=(60-minutoS)+(minutollegada);
+      int hora=(horallegada-horaS);
+      
+      if(minutollegada<minutoS) hora-=(minDif/60+horaS);
+
+      int minuto=minDif%60;
+      if(minuto>9) Console.WriteLine($"Tiempo transcurrido {hora}:{minuto}");
+      else
+      Console.WriteLine($"Tiempo transcurrido {hora}:0{minuto}");
     }
 }
