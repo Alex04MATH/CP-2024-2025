@@ -8,7 +8,9 @@ class Program
     Console.WriteLine(Solution.Factorial(5));
     Solution.ImprimiendoNumeros(6);
     Solution.ImprimiendoNumerosInvertido(6);
-    Solution.Avion(1, 58, 4, 20);
+    Solution.PlaneHour(0, 1, 0, 58);
+    Console.WriteLine(Solution.Mayor(103, 35, 45));
+    Solution.Calculadora(56, 34, '+');
   }
 }
 static class Solution
@@ -124,18 +126,51 @@ static class Solution
     Console.WriteLine(i);
     imprimiendoNumerosInvertido(n, i + 1);
   }
-  public static void Avion(int horaS, int minutoS, int horallegada, int minutollegada)
+  public static void PlaneHour(int horaS, int minutoS, int horallegada, int minutollegada)
   {
-    if ((horaS > 24 || horallegada > 24) || (minutoS > 60 || minutollegada > 60)) Console.WriteLine("Hora y minutos no validos");
+    if ((horaS > 24 || horallegada > 24) || (minutoS > 60 || minutollegada > 60))
+      Console.WriteLine("Hora y minutos no validos");
+
     int minDif = (60 - minutoS) + (minutollegada);
     int hora = (horallegada - horaS);
 
-    if (minutollegada < minutoS) hora -= (minDif / 60 + horaS);
-
+    if (minDif <= 59) hora -= 1;
     int minuto = minDif % 60;
     if (minuto > 9)
       Console.WriteLine($"Tiempo transcurrido {hora}:{minuto}");
     else
       Console.WriteLine($"Tiempo transcurrido {hora}:0{minuto}");
   }
+  public static int Mayor(int i, int j, int k)
+  {
+    if (i > j) return mayor(i, k);
+    return mayor(j, k);
+  }
+  private static int mayor(int i, int j)
+  {
+    if (i > j) return i;
+    return j;
+  }
+  public static void Calculadora(int i, int j, char k)
+  {
+    switch (k)
+    {
+      case '+':
+        Console.WriteLine((i + j));
+        break;
+      case '-':
+        Console.WriteLine((i - j));
+        break;
+      case '*':
+        Console.WriteLine((i * j));
+        break;
+      case '/':
+        Console.WriteLine((i / j));
+        break;
+      default:
+        Console.WriteLine("operación no valida");
+        return;
+    }
+  }
+
 }
