@@ -2,10 +2,17 @@
 {
     static void Main(string[] args)
     {
-        Console.WriteLine(Solution.Factorial(3));
+        Console.WriteLine(Solution.Factorial(5));
         Console.WriteLine(Solution.SumaImpares(6));
         Solution.MayorMenorPromedio([12, 345, 7364.5, 2899, 738, 1]);
         Solution.RecorriendoArray([12, 345, 2, 2899, 738, 1], 1);
+        int[] arr =Solution.InvertirArr([12, 345, 2, 2899, 738, 1]);
+        for(int i=0;i<arr.Length;i++)
+        {
+            Console.Write(arr[i]+", ");
+            if(i==arr.Length-1) 
+            Console.Write(arr[i]);
+        }
     }
 }
 class Solution
@@ -46,6 +53,7 @@ class Solution
 
         Console.WriteLine($"El menor elemento: {menor}, el mayor elemento:{mayor}, el promedio {promedio} .");
     }
+   #region Recorriendo Array
     public static void RecorriendoArray(int[] arr, int n)
     {
         Console.WriteLine($"El mayor elemento del array es {mayor(arr)}");
@@ -103,5 +111,15 @@ class Solution
             if (_promedio < arr[i]) numelementos++;
         }
         return numelementos;
+    }
+    #endregion
+    public static int[] InvertirArr(int []arr)
+    {
+        int[] arr1=new int[arr.Length];
+        for(int i=arr.Length-1,j=0;i>=0;i--,j++)
+        {
+            arr1[j]=arr[i];
+        }
+        return arr1;
     }
 }
