@@ -1,4 +1,6 @@
-﻿class Program
+﻿using System.Numerics;
+
+class Program
 {
     static void Main(string[] args)
     {
@@ -6,12 +8,16 @@
         Console.WriteLine(Solution.SumaImpares(6));
         Solution.MayorMenorPromedio([12, 345, 7364.5, 2899, 738, 1]);
         Solution.RecorriendoArray([12, 345, 2, 2899, 738, 1], 1);
-        int[] arr =Solution.InvertirArr([12, 345, 2, 2899, 738, 1]);
-        for(int i=0;i<arr.Length;i++)
+        int[] arr = Solution.InvertirArr([12, 345, 2, 2899, 738, 1]);
+        for (int i = 0; i < arr.Length; i++)
         {
-            Console.Write(arr[i]+", ");
-            if(i==arr.Length-1) 
-            Console.Write(arr[i]);
+            Console.Write(arr[i] + ", ");
+        }
+        Console.WriteLine("\n" + Solution.EsPalindromo("A"));
+        int[] arr1 = Solution.Rotando([25, 40, 17, 83, 9], -2);
+        for (int i = 0; i < arr1.Length; i++)
+        {
+            Console.Write(arr1[i] + ", ");
         }
     }
 }
@@ -53,7 +59,7 @@ class Solution
 
         Console.WriteLine($"El menor elemento: {menor}, el mayor elemento:{mayor}, el promedio {promedio} .");
     }
-   #region Recorriendo Array
+    #region Recorriendo Array
     public static void RecorriendoArray(int[] arr, int n)
     {
         Console.WriteLine($"El mayor elemento del array es {mayor(arr)}");
@@ -105,7 +111,7 @@ class Solution
     private static int cantidadDeElementosMayores(int[] arr)
     {
         int numelementos = 0;
-        int _promedio =(int) promedio(arr);
+        int _promedio = (int)promedio(arr);
         for (int i = 0; i < arr.Length; i++)
         {
             if (_promedio < arr[i]) numelementos++;
@@ -113,13 +119,55 @@ class Solution
         return numelementos;
     }
     #endregion
-    public static int[] InvertirArr(int []arr)
+    public static int[] InvertirArr(int[] arr)
     {
-        int[] arr1=new int[arr.Length];
-        for(int i=arr.Length-1,j=0;i>=0;i--,j++)
+        int[] arr1 = new int[arr.Length];
+        for (int i = arr.Length - 1, j = 0; i >= 0; i--, j++)
         {
-            arr1[j]=arr[i];
+            arr1[j] = arr[i];
         }
+        return arr1;
+    }
+    public static int[] FiltrandoPositivos(int[] arr)
+    {
+        List<int> arr1 = new List<int>();
+        for (int i = 0; i < arr.Length; i++)
+        {
+            if (arr[i] > 0) arr1.Add(arr[i]);
+        }
+        return arr1.ToArray();
+    }
+    public static bool EsPalindromo(string s)
+    {
+        bool palindromo = true;
+        for (int i = 0, j = s.Length - 1; i <= s.Length / 2 && j >= s.Length / 2; i++, j--)
+        {
+            if (s[i] != s[j]) return false;
+        }
+        return palindromo;
+    }
+    public static int[] Rotando(int[] arr, int n)
+    {
+        if (n == 0 || arr.Length == 0 || arr.Length == 1) return arr;
+        int[] arr1 = new int[arr.Length];
+        for (int i = 0; i < arr.Length; i++)
+        {
+            int posicion = i + n;
+            int posicionPositiva = (posicion) % arr.Length;
+
+            if (n > 0)
+            {
+                arr1[posicionPositiva] = arr[i];
+            }
+            if (n < 0)
+            {
+                if (posicion < 0)
+                    arr1[arr.Length + posicion] = arr[i];
+                if (posicion >= 0)
+                    arr1[posicion] = arr[i];
+            }
+        }
+
         return arr1;
     }
 }
