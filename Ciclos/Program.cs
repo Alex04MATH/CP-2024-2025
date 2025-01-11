@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Microsoft.VisualBasic;
 
 class Program
 {
@@ -14,10 +15,22 @@ class Program
             Console.Write(arr[i] + ", ");
         }
         Console.WriteLine("\n" + Solution.EsPalindromo("A"));
-        int[] arr1 = Solution.Rotando([25, 40, 17, 83, 9], -2);
+        int[] arr1 = Solution.Rotando([25, 40, 17, 83, 9], -23);
         for (int i = 0; i < arr1.Length; i++)
         {
             Console.Write(arr1[i] + ", ");
+        }
+        int[] arr2 = Solution.MezclaOrdenada([23, 40, 83], [5]);
+        Console.WriteLine();
+        for (int i = 0; i < arr2.Length; i++)
+        {
+            Console.Write(arr2[i] + ", ");
+        }
+        int[] arr3 = Solution.Insert(arr2, 4, 0);
+        Console.WriteLine();
+        foreach (int a in arr3)
+        {
+            Console.Write(a + ", ");
         }
     }
 }
@@ -162,12 +175,77 @@ class Solution
             if (n < 0)
             {
                 if (posicion < 0)
-                    arr1[arr.Length + posicion] = arr[i];
+                    arr1[(arr.Length + posicionPositiva)%arr.Length] = arr[i];
                 if (posicion >= 0)
                     arr1[posicion] = arr[i];
             }
         }
 
+        return arr1;
+    }
+    public static int[] MezclaOrdenada(int[] arr, int[] arr1)
+    {
+        int[] arr2 = new int[arr.Length + arr1.Length];
+        for (int i = 0, j = 0, k = 0; k < arr2.Length;)
+        {
+            if (validPosicion(arr.Length, i) && validPosicion(arr1.Length, j))
+            {
+                if (arr[i] <= arr1[j])
+                {
+                    arr2[k] = arr[i];
+                    k++;
+                    i++;
+                }
+                if (arr1[j] <= arr[i])
+                {
+                    arr2[k] = arr1[j];
+                    k++;
+                    j++;
+                }
+            }
+            else if (!validPosicion(arr.Length, i) && validPosicion(arr1.Length, j))
+            {
+                arr2[k] = arr1[j];
+                k++;
+                j++;
+            }
+            else if (validPosicion(arr.Length, i) && !validPosicion(arr1.Length, j))
+            {
+                arr2[k] = arr[i];
+                k++;
+                i++;
+            }
+        }
+        return arr2;
+    }
+    private static bool validPosicion(int tamaño, int i)
+    {
+        if (i >= tamaño) return false;
+        return true;
+    }
+    public static dynamic[] AñadiendoFinal(dynamic[] arr, dynamic final)
+    {
+        dynamic[] arr1 = new dynamic[arr.Length + 1];
+        for (int i = 0; i < arr.Length; i++)
+        {
+            arr1[i] = arr[i];
+        }
+        arr1[arr1.Length - 1] = final;
+        return arr1;
+    }
+    public static int[] Insert(int[] arr, int val, int pos)
+    {
+        if (pos < 0 || (pos >= arr.Length && pos != 0)) throw new NotImplementedException();
+        int[] arr1 = new int[arr.Length + 1];
+        for (int i = 0, j = 0; i < arr1.Length; i++, j++)
+        {
+            if (j == pos)
+            {
+                arr1[i] = val;
+                i++;
+            }
+            arr1[i] = arr[j];
+        }
         return arr1;
     }
 }
