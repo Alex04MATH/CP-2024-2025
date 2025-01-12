@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using Microsoft.VisualBasic;
+using Microsoft.Win32.SafeHandles;
 
 class Program
 {
@@ -32,6 +33,14 @@ class Program
         {
             Console.Write(a + ", ");
         }
+        int[] arr4 = Solution.Elimnando(arr3, 0);
+        Console.WriteLine();
+        foreach (int a in arr4)
+        {
+            Console.Write(a + ", ");
+        }
+        Console.WriteLine("\n" +Solution.DecimalBinary(0));
+        Console.WriteLine(Solution.BinaryDecimal("0"));
     }
 }
 class Solution
@@ -40,7 +49,6 @@ class Solution
     {
         int factorial = 1;
         if (n == 1 || n == 0) return factorial;
-
         for (int i = 0; i < n; i++)
         {
             factorial *= n - i;
@@ -175,12 +183,11 @@ class Solution
             if (n < 0)
             {
                 if (posicion < 0)
-                    arr1[(arr.Length + posicionPositiva)%arr.Length] = arr[i];
+                    arr1[(arr.Length + posicionPositiva) % arr.Length] = arr[i];
                 if (posicion >= 0)
                     arr1[posicion] = arr[i];
             }
         }
-
         return arr1;
     }
     public static int[] MezclaOrdenada(int[] arr, int[] arr1)
@@ -247,5 +254,52 @@ class Solution
             arr1[i] = arr[j];
         }
         return arr1;
+    }
+    public static int[] Elimnando(int[] arr, int pos)
+    {
+        if (pos < 0 || (pos >= arr.Length && pos != 0)) throw new Exception();
+        int[] arr1 = new int[arr.Length - 1];
+        for (int i = 0, j = 0; j < arr.Length; i++, j++)
+        {
+            if (j == pos)
+            {
+                if (j + 1 == arr.Length) break;
+                j++;
+            }
+            arr1[i] = arr[j];
+        }
+        return arr1;
+    }
+    public static string DecimalBinary(int x)
+    {   
+        if(x<0) throw new Exception();
+        int[] systemnum={0,1};
+        string num="";
+        if(x<2) return num=$"{x}";
+        for(int i=2;x>=2;)
+        {
+            num+=$"{x%i}";
+            x=x/i;
+            if(x<2) num+=x;
+        }
+        return invert(num);
+    }
+    private static string invert(string s)
+    {
+       string a="";
+       for(int i=s.Length-1;i>=0;i--)
+       {
+          a+=s[i];
+       }
+       return a;
+    }
+    public static int BinaryDecimal(string s)
+    {
+        int n=0;
+        for(int i=0;i<s.Length;i++)
+        {
+            if(s[i]=='1') n+=(int)Math.Pow(2, (s.Length-1)-i);
+        }
+        return n;
     }
 }
