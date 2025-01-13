@@ -39,7 +39,7 @@ class Program
         {
             Console.Write(a + ", ");
         }
-        Console.WriteLine("\n" +Solution.DecimalBinary(0));
+        Console.WriteLine("\n" + Solution.DecimalBinary(0));
         Console.WriteLine(Solution.BinaryDecimal("0"));
     }
 }
@@ -271,34 +271,34 @@ class Solution
         return arr1;
     }
     public static string DecimalBinary(int x)
-    {   
-        if(x<0) throw new Exception();
-        int[] systemnum={0,1};
-        string num="";
-        if(x<2) return num=$"{x}";
-        for(int i=2;x>=2;)
+    {
+        if (x < 0) throw new Exception();
+        int[] systemnum = { 0, 1 };
+        string num = "";
+        if (x < 2) return num = $"{x}";
+        for (int i = 2; x >= 2;)
         {
-            num+=$"{x%i}";
-            x=x/i;
-            if(x<2) num+=x;
+            num += $"{x % i}";
+            x = x / i;
+            if (x < 2) num += x;
         }
         return invert(num);
     }
     private static string invert(string s)
     {
-       string a="";
-       for(int i=s.Length-1;i>=0;i--)
-       {
-          a+=s[i];
-       }
-       return a;
+        string a = "";
+        for (int i = s.Length - 1; i >= 0; i--)
+        {
+            a += s[i];
+        }
+        return a;
     }
     public static int BinaryDecimal(string s)
     {
-        int n=0;
-        for(int i=0;i<s.Length;i++)
+        int n = 0;
+        for (int i = 0; i < s.Length; i++)
         {
-            if(s[i]=='1') n+=(int)Math.Pow(2, (s.Length-1)-i);
+            if (s[i] == '1') n += (int)Math.Pow(2, (s.Length - 1) - i);
         }
         return n;
     }
