@@ -1,0 +1,15 @@
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\bin\Debug\net8.0\Contador de Posibilidades Dado.exe
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\bin\Debug\net8.0\Contador de Posibilidades Dado.deps.json
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\bin\Debug\net8.0\Contador de Posibilidades Dado.runtimeconfig.json
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\bin\Debug\net8.0\Contador de Posibilidades Dado.dll
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\bin\Debug\net8.0\Contador de Posibilidades Dado.pdb
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\obj\Debug\net8.0\Contador de Posibilidades Dado.GeneratedMSBuildEditorConfig.editorconfig
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\obj\Debug\net8.0\Contador de Posibilidades Dado.AssemblyInfoInputs.cache
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\obj\Debug\net8.0\Contador de Posibilidades Dado.AssemblyInfo.cs
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\obj\Debug\net8.0\Contador de Posibilidades Dado.csproj.CoreCompileInputs.cache
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\obj\Debug\net8.0\Contador de Posibilidades Dado.sourcelink.json
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\obj\Debug\net8.0\Contador de Posibilidades Dado.dll
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\obj\Debug\net8.0\refint\Contador de Posibilidades Dado.dll
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\obj\Debug\net8.0\Contador de Posibilidades Dado.pdb
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\obj\Debug\net8.0\Contador de Posibilidades Dado.genruntimeconfig.cache
+E:\proyectos\Escuela\CP_24_25\Ejercicios Personales\Contador de Posibilidades Dado\obj\Debug\net8.0\ref\Contador de Posibilidades Dado.dll
