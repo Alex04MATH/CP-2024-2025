@@ -51,22 +51,114 @@ class Poly
     public new string ToString()
     {
         string s = "";
+        int antvalue=0;
         for (int i = polinomio.Length - 1; i >= 0; i--)
         {
             if(polinomio[i] == 0) continue;
-            s+=form(polinomio.Length - 1,i,polinomio[i]);
+            s+=form(i,polinomio[i],antvalue);
+            antvalue=polinomio[i];
         }
         if(polinomio.Length>0 && s=="") return "0";
         return s;
     }
-    private static string form(int polinomioL,int index,int value)
+    private static string form(int index,int value,int antvalue)
     {
-        string s="";
-        if(value==0) return s;
-        else if(polinomioL==index && value>0) return s=$"{value}x^{index}";
-        else if(value>0) return s=$" +{value}x^{index}";
+        if(value==0) return "";  
         
-        return $" +{value}x^{index}";
+        return $"{antvalueString(value,antvalue)}{exponencialString(index)}";
     }
+    private static string antvalueString(int value,int antvalue)
+    {
+       if(antvalue==0)
+       {
+         if(value>0) return $"{value}";
+       }
+       if(value>0) return $"+{value}";
 
+       return $"-{value}";
+    }
+    private static string exponencialString(int index)
+    { 
+        if(index==0) return "";
+        else if(index==1) return "x";
+        return $"x^{index}";
+    }
+    public static Poly operator +(Poly poly1,Poly poly2)
+    {
+        int a=poly1.polinomio.Length;
+        int b=poly2.polinomio.Length;
+        int[]arr=new int[Math.Max(a,b)];
+        for(int i=0;i<arr.Length;i++)
+        {
+            if(i>=a)
+            {
+                arr[i]=poly2.polinomio[i];
+                break;
+            }      
+            if(i>=b)
+            {
+                arr[i]=poly1.polinomio[i];
+                break;
+            }
+            arr[i]=poly1.polinomio[i]+poly2.polinomio[i];
+        }
+        return new Poly(arr);
+    }
+    public static Poly operator *(Poly poly1,Poly poly2)
+    {
+        int a=poly1.polinomio.Length-1;
+        int b=poly2.polinomio.Length-1;
+        int[]arr=new int[a+b+1];
+        for(int i=0;i<=a;i++)
+        {
+            for(int j=0;j<=b;j++)
+            {
+                arr[i+j]+=poly1.polinomio[i]*poly2.polinomio[j];
+            }
+        }
+        return new Poly(arr);
+    }
+    public static Poly operator *(int x,Poly poly)
+    {
+        for(int i=0;i<poly.polinomio.Length;i++)
+        {
+            poly.polinomio[i]=x*poly.polinomio[i];
+        }
+        return poly;
+    }
+    public static bool operator ==(Poly poly1, Poly poly2)
+    {
+        if(poly1.polinomio.Length != poly2.polinomio.Length) return false;
+        for(int i=0;i<poly1.polinomio.Length;i++)
+        {
+            if(poly1.polinomio[i] != poly2.polinomio[i]) return false;
+        }
+        return true;
+    }
+    public static bool operator !=(Poly poly1, Poly poly2)
+    {
+        return !(poly1==poly2);
+    }
+    public static bool operator >(Poly poly1, Poly poly2)
+    {
+        if(poly1.polinomio.Length>poly2.polinomio.Length) return true;
+        if(poly1.polinomio.Length<poly2.polinomio.Length) return false;
+        for(int i=0;i<poly1.polinomio.Length;i++)
+        {
+            if(poly1.polinomio[i]<poly2.polinomio[i]) return false;
+        }
+        return true && (poly1!=poly2);
+    }
+    public static bool operator <(Poly poly1,Poly poly2)
+    {
+        return !(poly1>poly2) && (poly1!=poly2);
+    }
+    public static bool operator >=(Poly poly1,Poly poly2)
+    {
+        return (poly1>poly2) || (poly1==poly2);
+    }
+    public static bool operator <=(Poly poly1,Poly poly2)
+    {
+        return (poly1<poly2) || (poly1==poly2);
+    }
 }
