@@ -7,10 +7,12 @@ class Poly
     private int[] polinomio;
     public int[] Polinomio { get => polinomio; }
     private int gradePoly;
+    
     public int GradePoly
     {
         get => gradePoly;
     }
+
     public int[] NewPoly(int[] polinomio)
     {
         this.polinomio = polinomio;
@@ -75,7 +77,7 @@ class Poly
        }
        if(value>0) return $"+{value}";
 
-       return $"-{value}";
+       return $"{value}";
     }
     private static string exponencialString(int index)
     { 
@@ -93,12 +95,12 @@ class Poly
             if(i>=a)
             {
                 arr[i]=poly2.polinomio[i];
-                break;
+                continue;
             }      
             if(i>=b)
             {
                 arr[i]=poly1.polinomio[i];
-                break;
+                continue;
             }
             arr[i]=poly1.polinomio[i]+poly2.polinomio[i];
         }
@@ -120,11 +122,12 @@ class Poly
     }
     public static Poly operator *(int x,Poly poly)
     {
+        int[] arr=new int[poly.polinomio.Length];
         for(int i=0;i<poly.polinomio.Length;i++)
         {
-            poly.polinomio[i]=x*poly.polinomio[i];
+            arr[i]=x*poly.polinomio[i];
         }
-        return poly;
+        return new Poly(arr);
     }
     public static bool operator ==(Poly poly1, Poly poly2)
     {
@@ -160,5 +163,52 @@ class Poly
     public static bool operator <=(Poly poly1,Poly poly2)
     {
         return (poly1<poly2) || (poly1==poly2);
+    }
+    
+    public static Poly operator /(Poly poly1,Poly poly2)
+    {
+        //implementar Exeption cuando poly2.grade ==0
+        int _newpolygrade=poly1.polinomio.Length-poly2.gradePoly;
+        int[]arr=new int[_newpolygrade+1];
+        int i=poly1.gradePoly;
+        for(;i>=poly2.gradePoly;i--)
+        {
+          int division=poly1.polinomio[i]/poly2.polinomio[poly2.gradePoly];
+          int index=i-poly2.gradePoly;
+          int resto=poly1.polinomio[i]%poly2.polinomio[poly2.gradePoly];
+          arr[index]=division;
+          Poly polyx=calculateMonicPoly(index);
+          poly1+=(-division)*(poly2*polyx)+(-1*restoIntDivisor(poly2.gradePoly,resto)*polyx);
+        }
+        
+        return new Poly(arr);
+    }
+    private static Poly calculateMonicPoly(int index)
+    {
+        int[]arr=new int[index+1];
+        arr[index]=1;
+        return new Poly(arr);
+    }
+    private static Poly restoIntDivisor(int index,int value)
+    {
+        int[]arr=new int[index+1];
+        arr[index]=value;
+        return new Poly(arr);
+    }
+    public static Poly operator %(Poly poly1,Poly poly2)
+    {
+        //implementar Exeption cuando poly2.grade ==0
+        int[] arr;
+        int i=poly1.gradePoly;
+        for(;i>=poly2.gradePoly;i--)
+        {
+          int division=poly1.polinomio[i]/poly2.polinomio[poly2.gradePoly];
+          int index=i-poly2.gradePoly;
+          int resto=poly1.polinomio[i]%poly2.polinomio[poly2.gradePoly];
+          Poly polyx=calculateMonicPoly(index);
+          poly1+=(-division)*(poly2*polyx)+(-1*restoIntDivisor(poly2.gradePoly,resto)*polyx);
+        }
+        arr=poly1.polinomio;
+        return new Poly(arr);
     }
 }
