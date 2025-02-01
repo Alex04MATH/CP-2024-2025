@@ -211,4 +211,29 @@ class Poly
         arr=poly1.polinomio;
         return new Poly(arr);
     }
+    public static Poly Dx(Poly poly1)
+    {
+      if(poly1.gradePoly==0) return new Poly([0]);
+      int[] arr=new int[poly1.polinomio.Length-1];
+      for(int i=arr.Length-1,j=poly1.polinomio.Length-1;i>=0;i--,j--)
+      {
+        if(poly1.polinomio[j]==0)
+        {
+            continue;
+        }
+        arr[i]=poly1.polinomio[j]*j;
+      }
+      return new Poly(arr);
+    }
+    public static int EvaluateX(Poly poly,int value)
+    {
+        int evaluate=0;
+        if(poly.gradePoly==0 && poly.polinomio.Length !=0) return poly.polinomio[0];
+        if(poly.polinomio.Length==0) return 0; 
+        for(int i=0;i<poly.polinomio.Length;i++)
+        {
+            evaluate+=poly.polinomio[i]*(int)Math.Pow(value,i);
+        }
+        return evaluate;
+    }
 }

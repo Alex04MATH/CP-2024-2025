@@ -14,5 +14,10 @@ class Program
        poly3=poly2*poly1+poly3;
        System.Console.WriteLine((poly3).ToString());
        System.Console.WriteLine((poly%poly1).ToString());
+       System.Console.WriteLine(Poly.Dx(poly3).ToString());
+       System.Console.WriteLine(Poly.EvaluateX(poly2,-1));
+       Fraction fraction=new Fraction(1,2);
+       Fraction fraction1=new Fraction(1,2);
+       System.Console.WriteLine((fraction1+fraction).GetNumerator);
     }
 }
