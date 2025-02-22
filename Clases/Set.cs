@@ -74,4 +74,41 @@ public class Set
         }
         return new Set(intersection);
     }
+    public static Set Union(Set set1,Set set2)
+    {
+        for(int i=0;i<set1.cardinal;i++)
+        {
+            set2.Add(set1.set[i]);
+        }
+        return new Set(set2.set);
+    }
+
+    public static bool Subset(Set set1,Set set2)
+    {
+        if(set1.cardinal>set2.cardinal) return false;
+        for(int i=0;i<set1.set.Count;i++)
+        {
+            if(!set2.Contains(set1.set[i])) return false;
+        }
+        return true;
+    }
+
+    public static bool Equals(Set set1,Set set2)
+    {
+        if(set1.cardinal>set2.cardinal || set1.cardinal<set2.cardinal) return false;
+
+        return Subset(set1,set2);
+    }
+
+    public static Set Difference(Set set1,Set set2)
+    {
+        List<int> difference = new List<int>();
+
+        for(int i=0;i<set1.cardinal;i++)
+        {
+            if(!set2.Contains(set1.set[i])) difference.Add(set1.set[i]);
+        }
+
+        return new Set(difference);
+    }
 }
