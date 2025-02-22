@@ -45,8 +45,8 @@ public class Set
     }
     public void Add(int a)
     {
-        if(set.Contains(a)) return;
-        set.Add(a); 
+        if (set.Contains(a)) return;
+        set.Add(a);
     }
     public void Remove(int a)
     {
@@ -58,55 +58,55 @@ public class Set
     }
     public void Clear()
     {
-        set=new List<int>();
+        set = new List<int>();
     }
-    public static Set Intersection(Set set1,Set set2)
+    public static Set Intersection(Set set1, Set set2)
     {
-        List<int> intersection=new List<int>();
-        bool cardinal=set1.cardinal>=set2.cardinal?true:false;
-        int val=0;
-        if(cardinal) val=set1.cardinal;
-        else val=set2.cardinal;
-        for(int i=0;i<val;i++)
+        List<int> intersection = new List<int>();
+        bool cardinal = set1.cardinal >= set2.cardinal ? true : false;
+        int val = 0;
+        if (cardinal) val = set1.cardinal;
+        else val = set2.cardinal;
+        for (int i = 0; i < val; i++)
         {
-            if(cardinal && set2.Contains(set1.set[i])) intersection.Add(set1.set[i]);
-            if(!cardinal && set1.Contains(set2.set[i])) intersection.Add(set2.set[i]);
+            if (cardinal && set2.Contains(set1.set[i])) intersection.Add(set1.set[i]);
+            if (!cardinal && set1.Contains(set2.set[i])) intersection.Add(set2.set[i]);
         }
         return new Set(intersection);
     }
-    public static Set Union(Set set1,Set set2)
+    public static Set Union(Set set1, Set set2)
     {
-        for(int i=0;i<set1.cardinal;i++)
+        for (int i = 0; i < set1.cardinal; i++)
         {
             set2.Add(set1.set[i]);
         }
         return new Set(set2.set);
     }
 
-    public static bool Subset(Set set1,Set set2)
+    public static bool Subset(Set set1, Set set2)
     {
-        if(set1.cardinal>set2.cardinal) return false;
-        for(int i=0;i<set1.set.Count;i++)
+        if (set1.cardinal > set2.cardinal) return false;
+        for (int i = 0; i < set1.set.Count; i++)
         {
-            if(!set2.Contains(set1.set[i])) return false;
+            if (!set2.Contains(set1.set[i])) return false;
         }
         return true;
     }
 
-    public static bool Equals(Set set1,Set set2)
+    public static bool Equals(Set set1, Set set2)
     {
-        if(set1.cardinal>set2.cardinal || set1.cardinal<set2.cardinal) return false;
+        if (set1.cardinal > set2.cardinal || set1.cardinal < set2.cardinal) return false;
 
-        return Subset(set1,set2);
+        return Subset(set1, set2);
     }
 
-    public static Set Difference(Set set1,Set set2)
+    public static Set Difference(Set set1, Set set2)
     {
         List<int> difference = new List<int>();
 
-        for(int i=0;i<set1.cardinal;i++)
+        for (int i = 0; i < set1.cardinal; i++)
         {
-            if(!set2.Contains(set1.set[i])) difference.Add(set1.set[i]);
+            if (!set2.Contains(set1.set[i])) difference.Add(set1.set[i]);
         }
 
         return new Set(difference);
