@@ -1,6 +1,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
+using System.Numerics;
 
 public class BigInt
 {
@@ -33,7 +34,7 @@ public class BigInt
 
         return newNum == "" ? "0" : newNum;
     }
-    
+
     private static bool validateNum(string num)
     {
         char[] digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -43,7 +44,7 @@ public class BigInt
         }
         return true;
     }
-    
+
     private static string invertString(string str)
     {
         var invert = str.ToCharArray();
@@ -51,7 +52,7 @@ public class BigInt
         str = new string(invert);
         return str;
     }
-    
+
     private static int Value(Char num)
     {
         int val = 0;
@@ -67,7 +68,7 @@ public class BigInt
         }
         return val;
     }
-    
+
     private static int Value(string num)
     {
         int value = 0;
@@ -78,7 +79,7 @@ public class BigInt
         }
         return value;
     }
-    
+
     public static BigInt operator +(BigInt bigInt1, BigInt bigInt2)
     {
         string num = "";
@@ -107,7 +108,7 @@ public class BigInt
         num = invertString(num);
         return new BigInt(num);
     }
-    
+
     public static BigInt operator -(BigInt bigInt1, BigInt bigInt2)
     {
         if (bigInt1.Length < bigInt2.Length) throw new Exception();
@@ -120,7 +121,7 @@ public class BigInt
         num = invertString(num); //cambiar el calcúlo en for desde el ultimo para ejecutar mas rápido con StringBuilder
         return new BigInt(num);
     }
-    
+
     public static BigInt operator *(BigInt bigInt1, BigInt bigInt2)
     {
         int val = Value(bigInt1.num);
@@ -129,7 +130,7 @@ public class BigInt
 
         return new BigInt(num);
     }
-    
+
     public static BigInt operator /(BigInt bigInt1, BigInt bigInt2)
     {
         int val = Value(bigInt1.num);
@@ -146,5 +147,27 @@ public class BigInt
         string num = $"{val % val1}";
 
         return new BigInt(num);
+    }
+
+    public static BigInt Pow(BigInt bigInt, int exponent)
+    {
+        int val = Value(bigInt.num);
+        string num = $"{(int)Math.Pow(val, exponent)}";
+
+        return new BigInt(num);
+    }
+
+    public static bool operator ==(BigInt bigint1, BigInt bigInt2)
+    {
+        if(bigint1.num == bigInt2.num) return true;
+
+        return false;
+    }
+
+    public static bool operator !=(BigInt bigInt1, BigInt bigInt2)
+    {
+        if(bigInt1.num==bigInt2.num) return false;
+
+        return true;
     }
 }
