@@ -159,15 +159,39 @@ public class BigInt
 
     public static bool operator ==(BigInt bigint1, BigInt bigInt2)
     {
-        if(bigint1.num == bigInt2.num) return true;
+        if (bigint1.num == bigInt2.num) return true;
 
         return false;
     }
 
     public static bool operator !=(BigInt bigInt1, BigInt bigInt2)
     {
-        if(bigInt1.num==bigInt2.num) return false;
+        if (bigInt1.num == bigInt2.num) return false;
 
         return true;
+    }
+
+    public static bool operator >(BigInt bigint1, BigInt bigInt2)
+    {
+        if (bigint1.Length < bigInt2.Length) return false;
+        if ((bigint1 == bigInt2 && Value(bigint1.num[0]) < Value(bigInt2.num[0])) || bigint1 == bigInt2) return false;
+
+        return true;
+    }
+
+    public static bool operator <(BigInt bigint1, BigInt bigint2)
+    {
+        if (bigint1 > bigint2 || bigint1 == bigint2) return false;
+
+        return true;
+    }
+
+    public static bool operator >=(BigInt bigint1, BigInt bigint2)
+    {
+        return (bigint1 > bigint2) || (bigint2 == bigint1);
+    }
+    public static bool operator <=(BigInt bigint1, BigInt bigint2)
+    {
+        return (bigint1 < bigint2) || (bigint1 == bigint2);
     }
 }
