@@ -1,19 +1,22 @@
+using System.Net;
 using System.Runtime.InteropServices;
 
 public partial class Solution
 {
-    public static int CualNumber(int k, int[] arr)
+    public static int HowManyNumbers(int k, int[] arr)
     {
-        int count = 0;
-
+        int count = 1;
+        int value =0 ;
         for (int i = 0; i < arr.Length; i++)
         {
-            if (arr[i] == k)
+            for(int j=(i+1)%arr.Length;j !=i ;j=(j+1)%arr.Length)
             {
-                ++count;
+               if(arr[j] == arr[i]) count++;
             }
+            if(count==k) value++;
+            count=1;
         }
-        return count;
+        return value/k;
     }
     public static int SistemaDeNumeracion(char[] num, string a)
     {
@@ -81,7 +84,7 @@ public partial class Solution
         int element = arr[0];
         int repetition = 1;
         bool exist = false;
-        if(k<repetition) return exist;
+        if (k < repetition) return exist;
         for (int i = 1; i < arr.Length; i++)
         {
             if (arr[i] == element)
@@ -104,48 +107,133 @@ public partial class Solution
     }
     public static int MaxSumSub(int[] arr)
     {
-        int sum=0;
-        int maxSum=0;
-        for(int i=0;i<arr.Length;i++)
+        int sum = 0;
+        int maxSum = 0;
+        for (int i = 0; i < arr.Length; i++)
         {
-            for(int j=arr.Length-1;j>=i;j--)
+            for (int j = arr.Length - 1; j >= i; j--)
             {
-              sum=Sum(arr,i,j);
-              if(sum>maxSum) maxSum=sum;
-              sum=0;
+                sum = Sum(arr, i, j);
+                if (sum > maxSum) maxSum = sum;
+                sum = 0;
             }
         }
         return maxSum;
     }
 
-    private static int Sum(int[] arr,int i,int j)
+    private static int Sum(int[] arr, int i, int j)
     {
-      int sum=0;
-      
-      for(;i<=j;i++)
-      {
-        sum+=arr[i];
-      }
-      return sum;
+        int sum = 0;
+
+        for (; i <= j; i++)
+        {
+            sum += arr[i];
+        }
+        return sum;
     }
-    
+
     public static int CountInversions(int[] arr)
     {
-        int inversions=0;
+        int inversions = 0;
 
-        for(int i=0;i<arr.Length;i++)
+        for (int i = 0; i < arr.Length; i++)
         {
-            for(int j=i+1;j<arr.Length;j++)
+            for (int j = i + 1; j < arr.Length; j++)
             {
-                if(arr[i]>arr[j])
+                if (arr[i] > arr[j])
                 {
                     inversions++;
-                    int temp=arr[i];
-                    arr[i]=arr[j];
-                    arr[j]=temp;
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
                 }
             }
         }
         return inversions;
+    }
+    public static bool Anagrams(string str, string str1)
+    {
+        if (str == str1) return true;
+        if (str.Length != str1.Length) return false;
+        str = str.ToUpper();
+        str1 = str1.ToUpper();
+        bool isAnagram = true;
+        for (int i = 0; i < str.Length; i++)
+        {
+            for (int j = 0; j < str1.Length; j++)
+            {
+                if (str[i] == str1[j])
+                {
+                    str1 = str1.Remove(j, 1);
+                }
+            }
+        }
+        if (str1 != "") isAnagram = false;
+        return isAnagram;
+    }
+
+    public static int MaxSubSetAnagram(string[] arrStr)
+    {
+        int CardinalSubset = 0;
+        int maxSubset = 0;
+        for (int i = 0; i < arrStr.Length; i++)
+        {
+            for (int j = 0; j < arrStr.Length; j++)
+            {
+                if (Anagrams(arrStr[i], arrStr[j]))
+                {
+                    CardinalSubset++;
+                }
+                if (CardinalSubset > maxSubset) maxSubset = CardinalSubset;
+            }
+            CardinalSubset = 0;
+        }
+        return maxSubset;
+    }
+
+    public static int Occurrences(string text, string word)
+    {
+        int occurrences = 0;
+        string build = "";
+        string[] textSplit = text.Split(" ");
+        for (int i = 0; i < textSplit.Length; i++)
+        {
+            if (textSplit[i].Length < word.Length) continue;
+            int index = 0;
+            for (int j = 0, k = 0; j < textSplit[i].Length; j++)
+            {
+                if (textSplit[i].Length - index >= word.Length - build.Length)
+                {
+                    if (k >= word.Length) k = 0;
+                    if (textSplit[i][j] == word[k])
+                    {
+                        index = j;
+                        build += textSplit[i][j];
+                        k++;
+                        if (build == word)
+                        {
+                            occurrences++;
+                            k = 0;
+                            build = "";
+                            if (word.Length > 1)
+                            {
+                               
+                                build += word[k];
+                                k++;
+                            }
+                        }
+                        if (textSplit[i].Length - index < word.Length - build.Length)
+                        {
+                            break;
+                        }
+
+                    }
+                }
+                else break;
+            }
+            build = "";
+        }
+
+        return occurrences;
     }
 }
