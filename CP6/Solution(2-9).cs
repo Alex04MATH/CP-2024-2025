@@ -18,7 +18,7 @@ public partial class Solution
         }
         return value/k;
     }
-    public static int SistemaDeNumeracion(char[] num, string a)
+    public static int NumberingSystem(char[] num, string a)
     {
         string b = "";
         int number = 0;
@@ -38,20 +38,20 @@ public partial class Solution
         }
         return number;
     }
-    public static string SistemaDeNumeracionInvertido(char[] num, int a)
+    public static string ReverseNumberingSystem(char[] num, int a)
     {
-        int basenum = num.Length;
+        int baseNum = num.Length;
         List<int> position = new List<int>();
         string b = "";
-        while (a >= basenum)
+        while (a >= baseNum)
         {
             int rest = 0;
-            rest = a % basenum;
-            a = a / basenum;
+            rest = a % baseNum;
+            a = a / baseNum;
             position.Add(rest);
 
         }
-        if (a < basenum) position.Add(a);
+        if (a < baseNum) position.Add(a);
 
         for (int i = position.Count - 1; i >= 0; i--)
         {

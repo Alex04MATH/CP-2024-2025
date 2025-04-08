@@ -18,8 +18,8 @@ class Program
         int[] a = Solution.BubbleSort([23, 45, 9238, 1, 3, 30, 29, 0, -1]);
         int[] b = Solution.SelectionSort([23, 23, 9238, 1, 1, 1, 29, 0, -1]);
         int c = Solution.MinDiff([4, 9, 1, 32, 13, 6]);
-        Console.WriteLine(Solution.SistemaDeNumeracion(['a', 'b'], "a"));
-        Console.WriteLine(Solution.SistemaDeNumeracionInvertido(['a', 'b'], 0));
+        Console.WriteLine(Solution.NumberingSystem(['a', 'b'], "a"));
+        Console.WriteLine(Solution.ReverseNumberingSystem(['a', 'b'], 0));
         Console.WriteLine(Solution.BinarySearch(a, 30));
         Console.WriteLine(c);
         Console.WriteLine(Solution.Consecutive(b, 3));
@@ -32,5 +32,7 @@ class Program
         System.Console.WriteLine(time.ElapsedMilliseconds);
         Console.WriteLine(Solution.Occurrences("mississippi","s"));
         System.Console.WriteLine(Solution.HowManyNumbers(1,[7, 7, 7, 7, 8, 9, 10, 8]));
+        System.Console.WriteLine(Solution.ErastotonSieve(100));
+        System.Console.WriteLine(Solution.ReverseSubArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],2));
     }
 }
