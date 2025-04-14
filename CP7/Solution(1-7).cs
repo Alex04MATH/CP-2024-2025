@@ -122,4 +122,58 @@ public partial class Solution
         }
         return matrix;
     }
+
+    public static int[] Spiral(int[,] matrix)
+    {
+        if (matrix.GetLength(0) * matrix.GetLength(1) < 0) return new int[] { };
+
+        int[] arr = new int[matrix.GetLength(0) * matrix.GetLength(1)];
+
+       bool[,] mask = new bool[matrix.GetLength(0), matrix.GetLength(1)];
+
+        (int, int)[] direction = { (0, 1), (1, 0), (0, -1), (-1, 0) };
+
+        int x = 0, y = 0;
+        int pos = 0;
+        arr[0]=matrix[0,0];
+        mask[0,0]=true;
+        for (int i = 1; i < arr.Length; i++)
+        {
+            x += direction[pos].Item1;
+            y += direction[pos].Item2;
+           if(x>=matrix.GetLength(0))
+           {
+            x-=1;
+            pos=++pos%4;
+            y += direction[pos].Item2;
+           }
+           if(y>=matrix.GetLength(1))
+           {
+             y-=1;
+             pos=++pos%4;
+             x+=direction[pos].Item1;
+           } 
+           if(y<0)
+           {
+            y=0;
+            pos=++pos%4;
+            x+=direction[pos].Item1;
+           }
+           if(x<0)
+           {
+            x=0;
+            pos=++pos%4;
+            y+=direction[pos].Item2;
+           }
+            if (mask[x, y])
+            {
+                pos=++pos%4;
+                x += direction[pos].Item1;
+                y += direction[pos].Item2;
+            }
+            mask[x,y]=true;
+            arr[i] = matrix[x, y];
+        }
+        return arr;
+    }
 }

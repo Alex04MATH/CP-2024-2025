@@ -25,5 +25,6 @@ public class Program
        System.Console.WriteLine(Solution.MultiplyMatrix(a,a));
        System.Console.WriteLine(Solution.Trace(a));
        int[,] c = new int[,] { { 5, 7 ,2}, { 6, 0,3 },{1,4,5} };
+       System.Console.WriteLine(Solution.Spiral(c));
     }
 }
